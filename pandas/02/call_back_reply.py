@@ -7,13 +7,13 @@ app = Flask(__name__)
 
 def chat_with_letta(messages):
     letta_client = Letta(
-        base_url="https://letta.igotu.top",
-        token="",
+        base_url="http://192.168.188.4:8283",
+        token="lett.+",
         project="default-project"
     )
 
     letta_response = letta_client.agents.messages.create(
-        agent_id="agent-4f9af52a-654b-448e-9c7f-",
+        agent_id="agent-4f9969c554cad0",
         messages=[
             MessageCreate(
                 role="user",
@@ -46,7 +46,7 @@ def dingding_callback():
 
     # 1. 获取消息文本
     text_obj = body.get("text", {})
-    content = text_obj.get("content", "")
+    content = body.get("senderNick", "无名用户") + " : " + text_obj.get("content", "")
 
     # 2. 获取 sessionWebhook
     session_webhook = body.get("sessionWebhook")
